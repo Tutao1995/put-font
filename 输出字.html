@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #father{width: 300px;height: 300px;margin: 50px auto;background: yellow;position: relative;
+            box-shadow: inset 3px 5px 3em red;overflow: hidden;border-radius: 10px}
+        .son{width: 250px;height: 250px;background:pink;position:absolute;top:270px;left: 270px;border-radius: 20px;
+            transition: all .5s ease;box-shadow:inset 3px 5px 3em #fff;line-height: 20px;color: #000;
+            padding: 10px;
+        opacity: 0.58}
+        #father:hover .son{top:30px;left: 30px;transform:rotate(360deg)}
+    </style>
+</head>
+<body>
+<div id="father">
+    <div class="son"></div>
+</div>
+<script type="text/javascript">
+
+           window.onload=function() {
+               var showDom=document.getElementsByClassName("son")[0];
+               var arr=[];//定义数组对象
+               arr.push("人在一生之中，总有些酸楚的往事，让人泪流满面，令你不堪回首；也总有一些甜蜜的回忆，让人沉醉不醒，痴迷而又流连忘返。");
+               arr.push("而一些生死离别的无奈，相聚重逢的喜悦，放弃与执着，忧愁和快乐，心痛过的，感动中的，都宛如一首跌宕起伏的人生交响乐。");
+               arr.push("既有千回百转的悱侧惆怅，又有情深意意的悠悠旋律，不时的在你心中回荡。徘徊。萦绕。");
+               var pos=1;//定义初始化索引位置
+               var strlen=arr[0].length;
+               var index=0;//数组索引
+               var timer=null;//记录定时器
+               var p="";
+               var row =0;//记录行号
+               function printText() {
+                   if (row < index) {
+                       p += arr[row++] + "<br/>";
+                   }
+                   showDom.innerHTML = p + arr[index].substring(0, pos);
+                   if (pos == strlen) {
+                       index++;
+                       pos = 0;
+                       if (index == arr[index].length) {
+                           index = 0;
+                           pos = 0;
+                           row = 0;
+                           p = ""
+                       }
+                       strlen = arr[index].length;
+                       setTimeout(printText, 100);
+                   } else {
+                       pos++;
+                       setTimeout(printText, 100);
+                   }
+               }
+                   printText();
+
+           }
+
+</script>
+</body>
+</html>
